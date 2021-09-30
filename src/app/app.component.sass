@@ -1,2 +1,19 @@
+.grid
+  display: grid
 
-  
+.header
+  grid-area: header
+
+.content
+  grid-area: content
+
+.footer
+  display: flex
+  align-items: center
+  grid-area: footer
+
+.grid-template-area
+  grid-template-columns: 100%
+  grid-template-rows: 150px auto 150px
+  grid-template-areas: "header" "content" "footer"
+  gap: 2em
