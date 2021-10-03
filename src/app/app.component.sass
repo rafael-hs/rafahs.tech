@@ -1,5 +1,16 @@
-.grid
+.app
   display: grid
+  min-height: 100vh
+  grid-template-columns: 1fr
+  grid-template-rows: 150px 1fr 150px
+  grid-template-areas: "header" "content" "footer"
+  gap: 2em
+
+@media(max-width: 700px)
+  .app
+    grid-template-columns: 1fr
+    grid-template-rows: 100px 1fr 100px
+    grid-template-areas: 'header' 'content' 'footer'
 
 .header
   grid-area: header
@@ -11,9 +22,3 @@
   display: flex
   align-items: center
   grid-area: footer
-
-.grid-template-area
-  grid-template-columns: 100%
-  grid-template-rows: 150px auto 150px
-  grid-template-areas: "header" "content" "footer"
-  gap: 2em
