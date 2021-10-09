@@ -1,17 +1,42 @@
 .home
+  height: 100%
   display: flex
+  align-items: center
   justify-content: center
-  img
-    max-height: 450px
-    max-width: 450px
-    margin: 25px 45px 25px 25px
-    display: inline-block
 
-  span
+  img
     align-self: center
+    border-radius: 3em
     display: inline-block
+    margin: 25px 45px 25px 25px
+    max-height: 250px
+    max-width: 250px
+
+  .apresentation
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+    max-width: 1000px
+    align-self: center
     margin: 10px 0px 10px 20px
-    p
-      font-size: 3em
-      font-weight: 900
-      color: white
+    h1
+      margin: 10px 0px 0px 0px
+      font-weight: 400
+      font-size: clamp(14px, 5vw, 16px)
+      color: #00896F
+    h2
+      margin: 10px 0px 0px 0px
+      font-weight: 600
+      font-size: clamp(40px, 8vw, 80px)
+      color: #fefedf
+    h3
+      line-height: 0.9
+      margin: 10px 0px 0px 0px
+      font-size: clamp(40px, 8vw, 80px)
+      color: #8892b0
+
+    div
+      p
+        margin: 10px 0px 0px 0px
+        max-width: 540px
