@@ -1,4 +1,5 @@
 $background_color: #4B4453
+$white: #fff
 
 .header
   display: flex
@@ -8,7 +9,6 @@ $background_color: #4B4453
   padding: 0px 50px
 
   a
-
     .logo
       display: flex
       align-items: center
@@ -19,66 +19,129 @@ $background_color: #4B4453
         max-width: 70px
         margin-right: 20px
 
-        .logo-text
-          text-shadow: 2px 3px 0px #898999
-          display: inline-block
-          position: relative
-          font-weight: 900
-          font-size: 2em
-          color: #fff
+  .nav-bar
+    nav
+      display: block
+      text-transform: uppercase
+      font-size: 0.75em
+      letter-spacing: 0.070em
 
-  nav
+      ul
+
+        li
+          margin-left: 20px
+          display: inline-block
+
+          a
+            display: inline-block
+            color: #fff
+            letter-spacing: 3px
+            position: relative
+            transition: all 0.4s ease
+            padding: 15px
+
+          a:hover
+            color: #FBFAFC
+
+          a:hover::after, a:hover::before
+            width: 100%
+            left: 0
+
+          a::after, a::before
+            content: ''
+            position: absolute
+            top: calc(100% + 5px)
+            width: 0
+            right: 0
+            height: 3px
+
+          a:before
+            transition: width .2s cubic-bezier(0.51, 0.18, 0, 0.88) .1s
+            background: #845EC2
+
+          a::after
+            transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83)
+            background: #2FFFAD
+
+          a.active:after
+            background: #2FFFAD
+            width: 100%
+            left: 0
+
+          a.active:before
+            z-index: 2
+
+.mobile-box
+  display: none
+  position: fixed
+  top: 30px
+  right: 0
+  z-index: 9
+.mobile-button
+  margin: 0px 15px
+  top: 0
+  right: 0
+  z-index: 99
+  cursor: pointer
+  width: 50px
+  height: 50px
+  position: absolute
+  text-align: center
+  font-size: 1.3em
+  line-height: 48px
+  border-radius: 50%
+  color: $white
+  background-color: #845ec2
+  box-shadow: 3px 3px 5px 0px #353535
+  i
+    font-size: inherit
+
+.mobile-button:hover
+  box-shadow: none
+
+.mobile-nav
+  display: block
+  text-transform: uppercase
+  letter-spacing: 0.065em
+  font-size: 0.75em
+  overflow: hidden
+  max-height: 400px
+  opacity: 0
+  transition: opacity 1.5s ease-out
+  ul
+    display: flex
+    flex-direction: column
+    text-align: right
+    margin-top: 60px
+    margin-right: 20px
+    padding-bottom: 20px
+    li
+      a
+        color: $white
+        display: block
+        border-radius: 25px
+        margin: 10px 0px 0px 0px
+        padding: 12px
+        text-align: center
+        line-height: 100%
+        background: #845ec2
+        box-shadow: 3px 3px 5px 0px #353535
+        transition: all 1s
+
+      a:hover
+        box-shadow: none
+
+@media(max-width: 640px)
+  .nav-bar
+    display: none
+
+  .mobile-box
     display: block
-    text-transform: uppercase
-    font-size: 0.75em
-    letter-spacing: 0.070em
 
-    ul
+.hidden
+  opacity: 0
+  pointer-events: none
 
-      li
-        margin-left: 20px
-        display: inline-block
-
-        a
-          display: inline-block
-          color: #fff
-          letter-spacing: 3px
-          position: relative
-          transition: all 0.4s ease
-          padding: 15px
-
-        a:hover
-          color: #FBFAFC
-
-        a:hover::after, a:hover::before
-          width: 100%
-          left: 0
-
-        a::after, a::before
-          content: ''
-          position: absolute
-          top: calc(100% + 5px)
-          width: 0
-          right: 0
-          height: 3px
-
-        a:before
-          transition: width .2s cubic-bezier(0.51, 0.18, 0, 0.88) .1s
-          background: #845EC2
-
-        a::after
-          transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83)
-          background: #2FFFAD
-
-        a.active:after
-          background: #2FFFAD
-          width: 100%
-          left: 0
-
-        a.active:before
-          z-index: 2
-
-  @media screen and (max-width: 650px)
-    ul
-      flex-direction: column
-      max-width: 650px
+.show
+  opacity: 1
+  display: block
