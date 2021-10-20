@@ -1,5 +1,5 @@
 .footer
-  margin: 20px
+  padding: 0px 0px
   display: flex
   text-align: center
   text-justify: center
@@ -14,11 +14,16 @@
     align-self: end
     padding: 5px 10px 5px 10px
     margin: 0px 5px 0px 5px
-  p
-    color: white
-    font-weight: 300
-    display: inline-block
-    left: 0
+    p
+      color: white
+      font-weight: 300
+      display: inline-block
+      left: 0
+
+    @media(max-width: 380px)
+      p
+        font-size: 0.8em
+        font-weight: 250
 
   ul
     display: flex
@@ -35,3 +40,14 @@
           transition: transform 0.2s, opacity 0.2s
       a:hover i
         transform: scale(1.5)
+
+      @media(max-width: 380px)
+        a
+          width: 30px
+          height: 30px
+          i
+            font-size: 30px
+            color: #FFF
+            transition: transform 0.2s, opacity 0.2s
+        a:hover i
+          transform: scale(1.5)

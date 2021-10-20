@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
   toggleNavButton() {
     let button = document.getElementById("mobileButton")
-    console.log(button)
     if (button) {
       let nav = document.getElementById("mobileNav")
       if (nav?.classList.contains("show")) {
