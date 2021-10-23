@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'articles',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.getInfosMedium()
+  }
+
+  articles: any
+
+  getInfosMedium() {
+    this.http.get("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@rafael-hs")
+      .subscribe(data => {
+        let values = Object.values(data)
+        console.log(values[2])
+        this.articles = values[2]
+        console.log(this.articles)
+
+      })
+
+
   }
 
 }
