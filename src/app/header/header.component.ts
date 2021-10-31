@@ -29,4 +29,23 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  activeButton(id: string) {
+    let current = document.getElementById(id)
+    let active = document.getElementsByClassName('active')
+
+    if (active.length > 0) {
+      active[0].classList.remove("active")
+    }
+
+    if (current) {
+      current.classList.add("active")
+    }
+  }
+
+  removeActive() {
+    let active = document.getElementsByClassName('active')
+    if (active.length > 0) {
+      active[0].classList.remove("active")
+    }
+  }
 }

@@ -1,11 +1,21 @@
-<div class="articles">
-  <div class="articles-box">
-    <div *ngFor="let article of articles">
+<div class="articles-box" *ngIf="articles; else loadingBox">
+    <div *ngFor="let article of articles" class="articles-for">
       <a href="{{article.link}}" target="_blank">
-        <img src="{{article.thumbnail}}" alt="">
-        <p class="title">{{article.title}}</p>
-        <p class="pub-date">Published: {{article.pubDate}}</p>
+        <div>
+          <img src="{{article.thumbnail}}" alt="">
+        </div>
+        <div>
+          <p class="title">{{article.title}}</p>
+          <p class="pub-date">Published: {{format_date(article.pubDate)}}</p>
+        </div>
       </a>
     </div>
-  </div>
 </div>
+
+<ng-template #loadingBox>
+  <div class="loading-box">
+    <h1>
+      Loading articles...
+    </h1>
+  </div>
+</ng-template>

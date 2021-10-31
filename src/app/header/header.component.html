@@ -1,5 +1,5 @@
 <div class="header">
-    <a routerLink="" title="Home">
+    <a class="btn-nav" routerLink="" title="Home" (click)="removeActive()">
         <div class="logo">
             <img src="https://mycolor.space/img/color-space-logo.png" alt="">
         </div>
@@ -7,10 +7,10 @@
     <div class="nav-bar">
         <nav>
             <ul>
-                <li><a routerLink="/about">About</a></li>
-                <li><a routerLink="/work">Work</a></li>
-                <li><a routerLink="/articles">Articles</a></li>
-                <li><a routerLink="/contact">Contact</a></li>
+                <li><a class="btn-nav" routerLink="/about" id="about" (click)="activeButton('about')">About</a></li>
+                <li><a class="btn-nav" routerLink="/work" id="work" (click)="activeButton('work')">Work</a></li>
+                <li><a class="btn-nav" routerLink="/articles" id="articles" (click)="activeButton('articles')">Articles</a></li>
+                <li><a class="btn-nav" routerLink="/contact" id="contact" (click)="activeButton('contact')">Contact</a></li>
             </ul>
         </nav>
     </div>

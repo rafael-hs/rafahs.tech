@@ -25,8 +25,11 @@ export class ArticlesComponent implements OnInit {
         console.log(this.articles)
 
       })
+  }
 
-
+  format_date(date: string) {
+    let date_att = new Date(date)
+    return date_att.toUTCString()
   }
 
 }
