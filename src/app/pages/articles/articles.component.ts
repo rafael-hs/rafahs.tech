@@ -20,10 +20,7 @@ export class ArticlesComponent implements OnInit {
     this.http.get("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@rafael-hs")
       .subscribe(data => {
         let values = Object.values(data)
-        console.log(values[2])
         this.articles = values[2]
-        console.log(this.articles)
-
       })
   }
 

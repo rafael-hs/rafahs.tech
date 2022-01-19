@@ -12,8 +12,19 @@
       <p>
         I’m a software engineer specializing in building and designing exceptional distributed systems.  Currently, I’m focused on backend, in special to elixir and functional languages.
       </p>
-      <a title="Resume" href="/assets/resume.pdf" download="resume.pdf">
+      <!-- <a title="Resume" href="/assets/resume.pdf" download="resume.pdf">
         My Resume
-      </a>
+      </a> -->
+      <div class="button-box">
+        <div class="resume" id="resumeButton" (click)="toggleNavButton()">
+            Resume
+        </div>
+        <div class="resume-button hidden" id="resumes">
+            <ul>
+                <li><a routerLink="/about">English</a></li>
+                <li><a title="Portuguese resume" href="/assets/resume.pdf" download="resume.pdf">Portuguese</a></li>
+            </ul>
+        </div>
+    </div>
   </div>
 </section>
