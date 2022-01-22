@@ -1,16 +1,23 @@
-FROM node:16-alpine3.14 As builder
+FROM node:16 as build
 
-WORKDIR /usr/local/app
+WORKDIR /app
 
-COPY ./ /usr/local/app/
+COPY ./ /app
 
-RUN npm install
+RUN npm install && npm cache clean --force
+
+COPY . /app
+
 RUN npm run build --prod
 
+
+#server
 FROM nginx:1.15.8-alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/dist/rafahs-tech /usr/share/nginx/html
+
+#COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
-COPY --from=builder /usr/local/app/dist/rafahs-tech/ /usr/share/nginx/html
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sudo", "nginx", "-g", "daemon off;"]
