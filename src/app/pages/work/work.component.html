@@ -1,4 +1,28 @@
 <div class="work">
+  <button (click)="openAccordion('swap')" (click)="activeButton('swap_button')" class="accordion" id="swap_button">
+    <img src="/assets/swap.jpg" alt="Swap image">
+    <div>
+      <h3>
+        Senior Software Engineer @ SWAP
+      </h3>
+      <p>
+        Out 2022 - Present
+      </p>
+      <p>
+        São Paulo, Brazil
+      </p>
+    </div>
+  </button>
+  <div class="hidden-panel" id="swap">
+    <p>Swap is a company that was created thinking about removing barriers in the world of payments, inserted in the BaaS market, we provide several solutions within this ecosystem.</p>
+    <h5>Technologies:</h5>
+    <ul>
+      <li>-	Elixir (Phoenix)</li>
+      <li>-	Retool </li>
+      <li>-	Postgres SQL</li>
+      <li>-	AWS</li>
+    </ul>
+  </div>
   <button (click)="openAccordion('jaya')" (click)="activeButton('jaya_button')" class="accordion" id="jaya_button">
     <img src="/assets/jaya.jpg" alt="Jaya Tech">
     <div>
@@ -6,7 +30,7 @@
         Software Engineer @ Jaya Tech
       </h3>
       <p>
-        Out 2020 - Present
+        Oct 2020 - Oct 2022
       </p>
       <p>
         São Paulo, Brazil
