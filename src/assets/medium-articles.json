@@ -1,0 +1,19 @@
+{
+  "articles": [
+    {
+      "title": "Understanding Elixir's Pattern Matching",
+      "link": "https://medium.com/@rafahs.tech/understanding-elixir-pattern-matching",
+      "pubDate": "2024-03-15",
+      "thumbnail": "https://example.com/thumbnail1.jpg",
+      "description": "A deep dive into Elixir's pattern matching feature"
+    },
+    {
+      "title": "Building Resilient Systems with OTP",
+      "link": "https://medium.com/@rafahs.tech/building-resilient-systems-with-otp",
+      "pubDate": "2024-02-20",
+      "thumbnail": "https://example.com/thumbnail2.jpg",
+      "description": "Guide to building fault-tolerant applications with Elixir/OTP"
+    }
+  ]
+}
+

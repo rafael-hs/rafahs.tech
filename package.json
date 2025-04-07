@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start-dev": "ng serve",
-    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "ng serve --port 4200 --live-reload false & cypress run"
   },
   "engines": {
     "node": "16.10.0",
@@ -35,6 +37,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "cypress": "^14.2.1",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

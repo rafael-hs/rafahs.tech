@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "feed": {
+    "url": "https://medium.com/feed/@rafael-hs",
+    "title": "Stories by Rafael Honório on Medium",
+    "link": "https://medium.com/@rafael-hs",
+    "author": "",
+    "description": "Stories by Rafael Honório on Medium",
+    "image": "https://cdn-images-1.medium.com/fit/c/150/150/1*sHhtYhaCe2Uc3IU0IgKwIQ.png"
+  },
+  "items": [
+    {
+      "title": "Example Article 1",
+      "pubDate": "2023-04-01 10:00:00",
+      "link": "https://medium.com/@rafael-hs/example-article-1",
+      "guid": "https://medium.com/p/abc123",
+      "author": "Rafael Honório",
+      "thumbnail": "https://miro.medium.com/max/700/1*example1.png",
+      "description": "This is an example article for testing purposes.",
+      "content": "<p>Example content for article 1</p>",
+      "categories": ["Programming", "Elixir"]
+    },
+    {
+      "title": "Example Article 2",
+      "pubDate": "2023-03-15
+
