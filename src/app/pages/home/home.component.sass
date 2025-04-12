@@ -36,14 +36,19 @@ $cyber-green: #00ff66
 @keyframes glitch
   0%, 100%
     transform: translate(0)
+    opacity: 0.7
   20%
     transform: translate(-2px, 2px)
+    opacity: 0.6
   40%
     transform: translate(-2px, -2px)
+    opacity: 0.7
   60%
     transform: translate(2px, 2px)
+    opacity: 0.6
   80%
     transform: translate(2px, -2px)
+    opacity: 0.7
 
 @keyframes scanline
   0%
@@ -169,16 +174,6 @@ $cyber-green: #00ff66
     transition: opacity 1s ease-in
     position: relative
     z-index: 1
-    
-    // Efeito de grade removido
-    &:before
-      content: ''
-      position: absolute
-      width: 0
-      height: 0
-      z-index: -1
-      
-    // Removidos os círculos neon pulsantes
 
     h1
       margin: 0px 0px 15px 4px
@@ -208,15 +203,18 @@ $cyber-green: #00ff66
       color: $cyber-blue
       text-shadow: 0 0 10px rgba($cyber-blue, 0.7)
       position: relative
+      display: inline-block
       
       &:after
         content: attr(data-text)
         position: absolute
         left: 2px
         top: 2px
+        width: 100%
+        height: 100%
         color: $cyber-pink
         opacity: 0.7
-        z-index: -1
+        z-index: 0
         animation: glitch 5s infinite
     
     h3
@@ -226,6 +224,9 @@ $cyber-green: #00ff66
       color: rgba(white, 0.9)
       position: relative
       text-shadow: 0 0 5px rgba(white, 0.5)
+      z-index: 1
+      clear: both
+      display: block
       
       &:after
         content: ''
@@ -244,6 +245,7 @@ $cyber-green: #00ff66
       line-height: 1.6
       position: relative
       text-shadow: 0 0 2px rgba($cyber-blue, 0.3)
+      z-index: 1
 
     .button-box
       display: flex
