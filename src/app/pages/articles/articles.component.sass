@@ -7,6 +7,20 @@
   animation: fadeInAnimation ease-in 2s
   animation-iteration-count: 1
   animation-fill-mode: forwards
+  position: relative
+  
+  // Efeito de linhas de grade no fundo
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: linear-gradient(rgba(#00ffff, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(#00ffff, 0.1) 1px, transparent 1px)
+    background-size: 30px 30px
+    z-index: -1
+    opacity: 0.3
 
   .articles-for
     max-width: 420px
@@ -40,3 +54,11 @@
   align-items: center
   h1
     color: white
+
+@keyframes fadeInAnimation
+  0%
+    opacity: 0
+    transform: translateY(20px)
+  100%
+    opacity: 1
+    transform: translateY(0)

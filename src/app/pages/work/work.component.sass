@@ -1,3 +1,13 @@
+// Importando variu00e1veis do estilo cyberpunk
+$cyber-yellow: #fcee0a
+$cyber-blue: #00ffff
+$cyber-pink: #ff00ff
+$cyber-red: #ff003c
+$cyber-black: #0d0d0d
+$cyber-dark-blue: #1b2735
+$cyber-neon-blue: #00f0ff
+$cyber-neon-pink: #ff2a6d
+
 .work
   height: 100%
   display: flex
@@ -5,9 +15,23 @@
   align-items: center
   justify-content: center
   margin: 20px 0px
-  animation: fadeInAnimation ease-in 2s
+  animation: fadeInAnimation ease-in 1.5s
   animation-iteration-count: 1
   animation-fill-mode: forwards
+  position: relative
+  
+  // Efeito de linhas de grade no fundo
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: linear-gradient(rgba($cyber-blue, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba($cyber-blue, 0.1) 1px, transparent 1px)
+    background-size: 30px 30px
+    z-index: -1
+    opacity: 0.3
 
   button.accordion
     display: flex
@@ -15,59 +39,154 @@
     width: 85%
     max-width: 780px
     padding: 20px
-    margin: 6px 40px
+    margin: 10px 40px
     border: none
-    border-radius: 10px
-    color: #ffffff
-    background-color: #493d5562
+    color: white
+    background-color: rgba($cyber-dark-blue, 0.7)
     cursor: pointer
     text-align: left
     font-size: 15px
-    transition: 0.4s
-
+    transition: all 0.3s ease
+    position: relative
+    overflow: hidden
+    box-shadow: 0 0 10px rgba($cyber-blue, 0.3)
+    border-left: 3px solid $cyber-blue
+    
+    // Efeito de brilho ao passar o mouse
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      left: -100%
+      width: 100%
+      height: 100%
+      background: linear-gradient(90deg, transparent, rgba($cyber-blue, 0.2), transparent)
+      transition: 0.5s
+      z-index: 1
+    
+    &:hover:before
+      left: 100%
+    
     img
       display: inline-block
       border-radius: 4px
       width: 50px
       height: 50px
+      border: 1px solid rgba($cyber-blue, 0.5)
+      box-shadow: 0 0 5px rgba($cyber-blue, 0.5)
+      z-index: 2
+      transition: all 0.3s ease
+      
     div
       padding: 0
-      margin: 0px 0px 0px 10px
+      margin: 0px 0px 0px 15px
+      position: relative
+      z-index: 2
+      
       h3
         text-transform: uppercase
-        font-size: 12px
+        font-size: 14px
         font-weight: 600
         display: inline
+        color: $cyber-blue
+        text-shadow: 0 0 5px rgba($cyber-blue, 0.5)
+        letter-spacing: 1px
+        
       p
-        font-size: 11px
+        font-size: 12px
+        color: rgba(white, 0.8)
+        margin-top: 5px
 
   button.accordion.active
-    border-radius: 10px 10px 0px 0px
-    margin: 0px 40px
+    border-radius: 0
+    margin: 10px 40px 0 40px
+    border-left: 3px solid $cyber-yellow
+    background-color: rgba($cyber-dark-blue, 0.9)
+    
+    img
+      border: 1px solid rgba($cyber-yellow, 0.5)
+      box-shadow: 0 0 8px rgba($cyber-yellow, 0.5)
+    
+    div h3
+      color: $cyber-yellow
+      text-shadow: 0 0 5px rgba($cyber-yellow, 0.5)
 
   button.accordion:hover
-    background-color: #493d559f
+    background-color: rgba($cyber-dark-blue, 0.8)
+    transform: translateY(-2px)
+    box-shadow: 0 5px 15px rgba($cyber-blue, 0.3)
 
   div.hidden-panel
     padding: 0 18px
     display: none
+    overflow: hidden
 
   div.hidden-panel.show
     width: 85%
     max-width: 780px
     display: block !important
-    background-color: #493d5562
-    border-radius: 0px 0px 10px 10px
-    margin: 0px 40px 6px 40px
+    background-color: rgba($cyber-dark-blue, 0.7)
+    margin: 0px 40px 10px 40px
+    padding: 15px 20px
+    border-left: 3px solid $cyber-yellow
+    box-shadow: 0 5px 15px rgba($cyber-blue, 0.2)
+    animation: panel-fade-in 0.5s ease-out forwards
+    
     p
-      margin: 8px
-      color: white
-      font-size: 12px
+      margin: 12px 0
+      color: rgba(white, 0.9)
+      font-size: 14px
+      line-height: 1.5
+      
     h5
-      margin: 8px
-      color: white
+      margin: 15px 0 10px 0
+      color: $cyber-yellow
+      font-size: 16px
+      text-transform: uppercase
+      letter-spacing: 1px
+      text-shadow: 0 0 5px rgba($cyber-yellow, 0.5)
+      
+    h6
+      color: $cyber-pink
+      margin: 12px 0 8px 0
+      font-size: 14px
+      text-transform: uppercase
+      letter-spacing: 1px
+      text-shadow: 0 0 5px rgba($cyber-pink, 0.5)
+      
     ul
-      margin: 8px
+      margin: 8px 0 15px 0
       color: white
+      
       li
-        font-size: 12px
+        font-size: 13px
+        margin: 5px 0
+        color: rgba(white, 0.8)
+        position: relative
+        padding-left: 5px
+        
+        &:before
+          content: ''
+          position: absolute
+          left: -10px
+          top: 50%
+          width: 5px
+          height: 1px
+          background: $cyber-blue
+          box-shadow: 0 0 5px $cyber-blue
+
+@keyframes fadeInAnimation
+  0%
+    opacity: 0
+    transform: translateY(20px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes panel-fade-in
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  100%
+    opacity: 1
+    transform: translateY(0)
