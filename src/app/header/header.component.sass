@@ -1,75 +1,121 @@
-$background_color: #4B4453
-$white: #fff
+// Importando variu00e1veis do estilo cyberpunk
+$cyber-yellow: #fcee0a
+$cyber-blue: #00ffff
+$cyber-pink: #ff00ff
+$cyber-red: #ff003c
+$cyber-black: #0d0d0d
+$cyber-dark-blue: #1b2735
+$cyber-neon-blue: #00f0ff
+$cyber-neon-pink: #ff2a6d
 
 .header
   display: flex
   align-items: center
   justify-content: space-between
   height: 100px
-  padding: 0px 0px
+  padding: 0px 20px
+  position: relative
+  background-color: rgba($cyber-black, 0.8)
+  backdrop-filter: blur(5px)
+
+  &:after
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 1px
+    background: linear-gradient(90deg, transparent, $cyber-blue, $cyber-pink, transparent)
+    box-shadow: 0 0 10px $cyber-blue
 
   a
     .logo
       margin: 0px 15px
       display: flex
       align-items: center
+      position: relative
+      
+      &:before
+        content: ''
+        position: absolute
+        top: -5px
+        left: -5px
+        right: -5px
+        bottom: -5px
+        border: 1px solid $cyber-yellow
+        opacity: 0
+        transition: opacity 0.3s ease
+      
+      &:hover:before
+        opacity: 1
+        animation: logo-glitch 1s infinite
+      
       img
         display: inline-block
         width: 100%
         max-width: 70px
         margin-right: 20px
+        filter: drop-shadow(0 0 5px $cyber-blue)
 
   .nav-bar
     nav
       display: block
       text-transform: uppercase
-      font-size: 0.75em
+      font-size: 0.85em
       letter-spacing: 0.070em
       margin: 0px 15px
       ul
-
         li
           margin-left: 20px
           display: inline-block
 
           a
             display: inline-block
-            color: #fff
+            color: $cyber-blue
             letter-spacing: 3px
             position: relative
             transition: all 0.4s ease
             padding: 15px
+            text-shadow: 0 0 5px rgba($cyber-blue, 0.5)
+
+            &:before, &:after
+              content: ''
+              position: absolute
+              background: $cyber-yellow
+              transition: transform 0.3s ease
+              opacity: 0.8
+
+            &:before
+              left: 0
+              bottom: 0
+              width: 100%
+              height: 1px
+              transform: scaleX(0)
+              transform-origin: right
+
+            &:after
+              right: 0
+              top: 0
+              width: 100%
+              height: 1px
+              transform: scaleX(0)
+              transform-origin: left
 
           a:hover
-            color: #FBFAFC
+            color: $cyber-yellow
+            text-shadow: 0 0 8px $cyber-blue
 
-          a:hover::after, a:hover::before
-            width: 100%
-            left: 0
+            &:before, &:after
+              transform: scaleX(1)
 
-          a::after, a::before
-            content: ''
-            position: absolute
-            top: calc(100% + 5px)
-            width: 0
-            right: 0
-            height: 3px
-
-          a:before
-            transition: width .2s cubic-bezier(0.51, 0.18, 0, 0.88) .1s
-            background: #845EC2
-
-          a::after
-            transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83)
-            background: #2FFFAD
-
-          a.active:after
-            background: #2FFFAD
-            width: 100%
-            left: 0
-
-          a.active:before
-            z-index: 2
+          a.active
+            color: $cyber-yellow
+            text-shadow: 0 0 8px $cyber-blue
+            
+            &:before, &:after
+              transform: scaleX(1)
+              background: $cyber-yellow
+              box-shadow: 0 0 10px $cyber-yellow
 
 .mobile-box
   display: none
@@ -77,6 +123,7 @@ $white: #fff
   top: 30px
   right: 0
   z-index: 9
+
 .mobile-button
   margin: 0px 15px
   top: 0
@@ -90,14 +137,18 @@ $white: #fff
   font-size: 1.3em
   line-height: 48px
   border-radius: 50%
-  color: $white
-  background-color: #845ec2
-  box-shadow: 3px 3px 5px 0px #353535
+  color: $cyber-black
+  background-color: $cyber-yellow
+  box-shadow: 0 0 15px $cyber-yellow
+  transition: all 0.3s ease
+  
   i
     font-size: inherit
 
 .mobile-button:hover
-  box-shadow: none
+  background-color: $cyber-blue
+  box-shadow: 0 0 15px $cyber-blue
+  transform: scale(1.05)
 
 .mobile-nav
   display: block
@@ -107,7 +158,9 @@ $white: #fff
   overflow: hidden
   max-height: 400px
   opacity: 0
-  transition: opacity 1s ease-out
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out
+  transform: translateY(-20px)
+  
   ul
     display: flex
     flex-direction: column
@@ -115,21 +168,39 @@ $white: #fff
     margin-top: 60px
     margin-right: 20px
     padding-bottom: 20px
+    
     li
       a
-        color: $white
+        color: $cyber-black
         display: block
-        border-radius: 25px
+        border-radius: 0
         margin: 10px 0px 0px 0px
         padding: 12px
         text-align: center
         line-height: 100%
-        background: #845ec2
-        box-shadow: 3px 3px 5px 0px #353535
-        transition: all 1s
+        background: $cyber-yellow
+        box-shadow: 0 0 10px $cyber-yellow
+        transition: all 0.3s ease
+        position: relative
+        overflow: hidden
+        
+        &:before
+          content: ''
+          position: absolute
+          top: 0
+          left: -100%
+          width: 100%
+          height: 100%
+          background: rgba($cyber-blue, 0.3)
+          transition: transform 0.5s ease
 
       a:hover
-        box-shadow: none
+        background: $cyber-blue
+        box-shadow: 0 0 15px $cyber-blue
+        transform: scale(1.05)
+        
+        &:before
+          transform: translateX(100%)
 
 @media(max-width: 640px)
   .nav-bar
@@ -141,7 +212,44 @@ $white: #fff
 .hidden
   opacity: 0
   pointer-events: none
+  transform: translateY(-20px)
 
 .show
   opacity: 1
   display: block
+  transform: translateY(0)
+
+@keyframes logo-glitch
+  0%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(-2px, 2px)
+  10%
+    clip-path: inset(10% 0 85% 0)
+    transform: translate(2px, -2px)
+  20%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(2px, 2px)
+  30%
+    clip-path: inset(10% 0 85% 0)
+    transform: translate(-2px, -2px)
+  40%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(-2px, 2px)
+  50%
+    clip-path: inset(10% 0 85% 0)
+    transform: translate(2px, -2px)
+  60%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(2px, 2px)
+  70%
+    clip-path: inset(10% 0 85% 0)
+    transform: translate(-2px, -2px)
+  80%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(-2px, 2px)
+  90%
+    clip-path: inset(10% 0 85% 0)
+    transform: translate(2px, -2px)
+  100%
+    clip-path: inset(80% 0 0 0)
+    transform: translate(2px, 2px)

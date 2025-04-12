@@ -1,17 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+/* Cyberpunk 2077 inspired theme */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap')
+
+// Cyberpunk 2077 color palette
+$cyber-yellow: #fcee0a
+$cyber-blue: #00ffff
+$cyber-pink: #ff00ff
+$cyber-red: #ff003c
+$cyber-black: #0d0d0d
+$cyber-dark-blue: #1b2735
+$cyber-neon-blue: #00f0ff
+$cyber-neon-pink: #ff2a6d
+
 *
-  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace
+  font-family: 'Rajdhani', 'Share Tech Mono', monospace
   margin: 0
   padding: 0
   border: 0
   box-sizing: border-box
   text-decoration-style: none
+  color: white
 
 html, body
   min-height: 100%
+  background-color: $cyber-black
+  overflow-x: hidden
 
 a
   text-decoration: none
+  position: relative
+  color: $cyber-blue
+  transition: color 0.3s ease
+  &:hover
+    color: $cyber-yellow
+    text-shadow: 0 0 8px $cyber-blue
 
 ol, ul, li
   list-style: none
+
+// Cyberpunk glitch effect for text
+@mixin glitch-effect
+  position: relative
+  &:before, &:after
+    content: attr(data-text)
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0.8
+  &:before
+    left: 2px
+    text-shadow: -1px 0 $cyber-red
+    animation: glitch-anim-1 2s infinite linear alternate-reverse
+  &:after
+    left: -2px
+    text-shadow: 1px 0 $cyber-blue
+    animation: glitch-anim-2 3s infinite linear alternate-reverse
+
+@keyframes glitch-anim-1
+  0%
+    clip-path: inset(20% 0 80% 0)
+  20%
+    clip-path: inset(60% 0 1% 0)
+  40%
+    clip-path: inset(25% 0 58% 0)
+  60%
+    clip-path: inset(54% 0 7% 0)
+  80%
+    clip-path: inset(70% 0 12% 0)
+  100%
+    clip-path: inset(10% 0 58% 0)
+
+@keyframes glitch-anim-2
+  0%
+    clip-path: inset(63% 0 1% 0)
+  20%
+    clip-path: inset(25% 0 58% 0)
+  40%
+    clip-path: inset(87% 0 4% 0)
+  60%
+    clip-path: inset(64% 0 24% 0)
+  80%
+    clip-path: inset(23% 0 67% 0)
+  100%
+    clip-path: inset(96% 0 3% 0)
+
+// Neon border effect
+@mixin neon-border($color: $cyber-blue, $width: 1px)
+  border: $width solid $color
+  box-shadow: 0 0 5px $color, 0 0 10px $color, inset 0 0 5px $color
