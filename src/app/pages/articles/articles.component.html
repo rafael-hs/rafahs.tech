@@ -1,8 +1,8 @@
-<section class="articles-section" style="min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<section class="articles-section">
     <!-- Elementos do fundo cyberpunk -->
     <div class="scanline"></div>
     
-    <div class="articles-container" *ngIf="!isLoading && articles.length > 0; else loadingBox" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <div class="articles-container" *ngIf="!isLoading && articles.length > 0; else loadingBox">
         <div *ngFor="let article of articles" class="article-card">
             <a href="{{article.link}}" target="_blank">
                 <div class="article-image">
@@ -16,13 +16,13 @@
         </div>
     </div>
     
-    <div *ngIf="!isLoading && articles.length === 0" class="no-articles" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 20px; height: 100%;">
+    <div *ngIf="!isLoading && articles.length === 0" class="no-articles">
         <h2>Nenhum artigo encontrado</h2>
         <p>Não foi possível carregar os artigos do Medium. Tente novamente mais tarde.</p>
     </div>
     
     <ng-template #loadingBox>
-        <div class="loading-box" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 20px; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <div class="loading-box">
             <h1>Loading articles...</h1>
         </div>
     </ng-template>
