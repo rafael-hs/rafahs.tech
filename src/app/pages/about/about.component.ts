@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from 'src/app/header/header.component';
 
 @Component({
@@ -6,12 +6,9 @@ import { HeaderComponent } from 'src/app/header/header.component';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.sass']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
 
   constructor(private header: HeaderComponent) { }
-
-  ngOnInit(): void {
-  }
 
   activeButton(id: string) {
     this.header.activeButton(id)

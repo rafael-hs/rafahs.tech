@@ -14,49 +14,24 @@ $cyber-green: #00ff66
 @keyframes fadeInAnimation
   0%
     opacity: 0
+    transform: translateY(20px)
   100%
     opacity: 1
-
-// Animação horizontal-lines removida
-
-@keyframes grid-move
-  0%
-    transform: perspective(1200px) rotateX(65deg) translateY(0)
-  100%
-    transform: perspective(1200px) rotateX(65deg) translateY(40px)
-
-@keyframes pulse
-  0%, 100%
-    opacity: 0.3
-    transform: scale(1)
-  50%
-    opacity: 0.6
-    transform: scale(1.05)
+    transform: translateY(0)
 
 @keyframes glitch
-  0%, 100%
-    transform: translate(0)
-    opacity: 0.7
-  20%
-    transform: translate(-2px, 2px)
-    opacity: 0.6
-  40%
-    transform: translate(-2px, -2px)
-    opacity: 0.7
-  60%
-    transform: translate(2px, 2px)
-    opacity: 0.6
-  80%
-    transform: translate(2px, -2px)
-    opacity: 0.7
-
-@keyframes cityLights
   0%
-    opacity: 0.3
+    text-shadow: 0.05em 0 0 $cyber-pink, -0.05em -0.025em 0 $cyber-blue
+    transform: translate(0.025em, 0.025em)
+  15%
+    text-shadow: -0.05em -0.025em 0 $cyber-pink, 0.025em 0.025em 0 $cyber-blue
+    transform: translate(-0.025em, -0.025em)
   50%
-    opacity: 0.8
+    text-shadow: 0.025em 0.05em 0 $cyber-pink, 0.05em 0 0 $cyber-blue
+    transform: translate(0, 0)
   100%
-    opacity: 0.3
+    text-shadow: -0.025em 0 0 $cyber-pink, -0.025em -0.025em 0 $cyber-blue
+    transform: translate(0.025em, 0.025em)
 
 @keyframes neonFlicker
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%
@@ -88,57 +63,24 @@ $cyber-green: #00ff66
     background-size: 30px 30px
     z-index: -1
     opacity: 0.3
-  
-  // Partículas flutuantes
-  .particles
-    position: absolute
-    top: 0
-    left: 0
+
+  .content-wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
     width: 100%
     height: 100%
-    overflow: hidden
-    z-index: -3
+
+  .profile-image
+    height: 100vh
+    display: flex
+    align-items: center
+    justify-content: center
     
-    .particle
-      position: absolute
-      width: 1px
-      height: 1px
-      background-color: $cyber-blue
-      border-radius: 50%
-      box-shadow: 0 0 5px $cyber-blue
-      opacity: 0.4
-      pointer-events: none
-      
-      &:nth-child(1)
-        top: 20%
-        left: 10%
-        animation: pulse 4s infinite
-      &:nth-child(2)
-        top: 70%
-        left: 30%
-        animation: pulse 6s infinite
-      &:nth-child(3)
-        top: 40%
-        left: 60%
-        animation: pulse 5s infinite
-      &:nth-child(4)
-        top: 80%
-        left: 80%
-        animation: pulse 7s infinite
-      &:nth-child(5)
-        top: 30%
-        left: 90%
-        animation: pulse 8s infinite
-      &:nth-child(6)
-        top: 60%
-        left: 40%
-        animation: pulse 9s infinite
-      &:nth-child(7)
-        top: 10%
-        left: 70%
-        animation: pulse 10s infinite
-  
-  // Linhas verticais neon removidas
+    img
+      height: 100vh
+      object-fit: contain
+      max-width: 100%
 
   .apresentation
     margin: auto
@@ -206,14 +148,6 @@ $cyber-green: #00ff66
       z-index: 1
       clear: both
       display: block
-      
-      &:after
-        content: ''
-        position: absolute
-        bottom: -10px
-        left: 0
-        width: 0
-        height: 0
 
     p
       margin: 30px 0px 0px 0px
@@ -298,129 +232,47 @@ $cyber-green: #00ff66
         letter-spacing: 0.065em
         font-size: 0.75em
         overflow: hidden
-        
-        &.hidden
-          display: none
-          
-        &.show
-          display: block
-          position: absolute
-          background: rgba($cyber-dark-blue, 0.7)
-          border: 1px solid $cyber-blue
-          box-shadow: 0 0 10px rgba($cyber-blue, 0.5)
-          padding: 10px
-          left: 100%
-          top: 0
-          
-          ul
-            list-style: none
-            padding: 0
-            margin: 0
-            
-            li
-              margin: 5px 0
-              
-              a
-                color: $cyber-blue
-                text-decoration: none
-                transition: all 0.3s ease
-                
-                &:hover
-                  color: $cyber-yellow
-                  text-shadow: 0 0 5px $cyber-yellow
         max-height: 400px
         opacity: 0
         transition: opacity 0.5s ease-out, transform 0.5s ease-out
         transform: translateX(-10px)
 
-        ul
-          display: flex
-          flex-direction: column
-          text-align: right
-          margin-top: 0px
-          margin-right: 20px
-          padding-bottom: 20px
-
-          li
-            a
-              color: $cyber-black
-              display: block
-              margin: 10px 0px 0px 0px
-              padding: 12px 20px
-              text-align: center
-              line-height: 100%
-              background: $cyber-yellow
-              box-shadow: 0 0 10px rgba($cyber-yellow, 0.5)
-              transition: all 0.3s ease
-              position: relative
-              overflow: hidden
-              font-weight: 600
-              text-transform: uppercase
-              letter-spacing: 1px
-              
-              &:before
-                content: ''
-                position: absolute
-                top: 0
-                left: -100%
-                width: 100%
-                height: 100%
-                background: rgba($cyber-blue, 0.3)
-                transition: transform 0.5s ease
-
-            a:hover
-              background: $cyber-blue
-              color: $cyber-black
-              box-shadow: 0 0 15px rgba($cyber-blue, 0.7)
-              transform: translateY(-3px)
-              
-              &:before
-                transform: translateX(100%)
-
       .hidden
         opacity: 0
         pointer-events: none
         transform: translateX(-10px)
+        display: none
 
       .show
         opacity: 1
         display: block
         transform: translateX(0)
+        position: absolute
+        background: rgba($cyber-dark-blue, 0.7)
+        border: 1px solid $cyber-blue
+        box-shadow: 0 0 10px rgba($cyber-blue, 0.5)
+        padding: 10px
+        left: 100%
+        top: 0
+        
+        ul
+          list-style: none
+          padding: 0
+          margin: 0
+          
+          li
+            margin: 5px 0
+            
+            a
+              color: $cyber-blue
+              text-decoration: none
+              transition: all 0.3s ease
+              
+              &:hover
+                color: $cyber-yellow
+                text-shadow: 0 0 5px $cyber-yellow
 
   @media(max-width: 410px)
     .apresentation
       margin: 0px 15px
       max-width: 300px
-      
-      &:after
-        font-size: 80px
-        bottom: -10px
-
-@keyframes fadeInAnimation
-  0%
-    opacity: 0
-    transform: translateY(20px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes glitch
-  0%
-    text-shadow: 0.05em 0 0 $cyber-pink, -0.05em -0.025em 0 $cyber-blue
-    transform: translate(0.025em, 0.025em)
-  15%
-    text-shadow: -0.05em -0.025em 0 $cyber-pink, 0.025em 0.025em 0 $cyber-blue
-    transform: translate(-0.025em, -0.025em)
-  50%
-    text-shadow: 0.025em 0.05em 0 $cyber-pink, 0.05em 0 0 $cyber-blue
-    transform: translate(0, 0)
-  100%
-    text-shadow: -0.025em 0 0 $cyber-pink, -0.025em -0.025em 0 $cyber-blue
-    transform: translate(0.025em, 0.025em)
-    
-@keyframes grid-move
-  0%
-    background-position: 0 0
-  100%
-    background-position: 80px 80px

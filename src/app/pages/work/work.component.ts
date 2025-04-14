@@ -1,16 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'work',
   templateUrl: './work.component.html',
   styleUrls: ['./work.component.sass']
 })
-export class WorkComponent implements OnInit {
+export class WorkComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   openAccordion(id: string) {
     let elem = document.getElementById(id)
