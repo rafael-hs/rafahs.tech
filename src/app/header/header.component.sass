@@ -66,48 +66,38 @@ $cyber-neon-pink: #ff2a6d
       align-items: center
       position: relative
       
-      &:before
-        content: ''
-        position: absolute
-        top: -5px
-        left: -5px
-        right: -5px
-        bottom: -5px
-        border: 1px solid $cyber-yellow
-        opacity: 0
-        transition: opacity 0.3s ease
-      
-      &:hover:before
-        opacity: 1
-        animation: logo-glitch 1s infinite
+      // Removed the rectangle hover effect
       
       &:after
         content: 'HOME'
         position: absolute
         bottom: -15px
-        left: 50%
-        transform: translateX(-50%)
+        left: 0
+        right: 0
+        margin: 0 auto
         font-size: 10px
         color: $cyber-neon-blue
         text-shadow: 0 0 5px $cyber-neon-blue
         letter-spacing: 2px
         opacity: 0
         transition: opacity 0.3s ease
+        text-align: center
+        width: 60px
       
       &:hover:after
         opacity: 1
       
+      &:hover img
+        filter: drop-shadow(0 0 15px $cyber-neon-blue)
+        transform: scale(1.1)
+      
       img
         display: inline-block
         width: 100%
-        max-width: 70px
-        margin-right: 20px
+        max-width: 60px
+        margin-right: 0
         filter: drop-shadow(0 0 8px $cyber-neon-blue)
         transition: all 0.3s ease
-        
-        &:hover
-          filter: drop-shadow(0 0 12px $cyber-neon-pink)
-          transform: scale(1.05)
 
   .nav-bar
     nav
@@ -121,53 +111,53 @@ $cyber-neon-pink: #ff2a6d
           margin-left: 20px
           display: inline-block
 
-          a
-            display: inline-block
-            color: $cyber-blue
-            letter-spacing: 3px
-            position: relative
-            transition: all 0.4s ease
-            padding: 15px
-            text-shadow: 0 0 5px rgba($cyber-blue, 0.5)
+  a.btn-nav:not([routerLink=""])
+    display: inline-block
+    color: $cyber-blue
+    letter-spacing: 3px
+    position: relative
+    transition: all 0.4s ease
+    padding: 15px
+    text-shadow: 0 0 5px rgba($cyber-blue, 0.5)
 
-            &:before, &:after
-              content: ''
-              position: absolute
-              background: $cyber-yellow
-              transition: transform 0.3s ease
-              opacity: 0.8
+    &:before, &:after
+      content: ''
+      position: absolute
+      background: $cyber-yellow
+      transition: transform 0.3s ease
+      opacity: 0.8
 
-            &:before
-              left: 0
-              bottom: 0
-              width: 100%
-              height: 1px
-              transform: scaleX(0)
-              transform-origin: right
+    &:before
+      left: 0
+      bottom: 0
+      width: 100%
+      height: 1px
+      transform: scaleX(0)
+      transform-origin: right
 
-            &:after
-              right: 0
-              top: 0
-              width: 100%
-              height: 1px
-              transform: scaleX(0)
-              transform-origin: left
+    &:after
+      right: 0
+      top: 0
+      width: 100%
+      height: 1px
+      transform: scaleX(0)
+      transform-origin: left
 
-          a:hover
-            color: $cyber-yellow
-            text-shadow: 0 0 8px $cyber-blue
+  a.btn-nav:not([routerLink=""]):hover
+    color: $cyber-yellow
+    text-shadow: 0 0 8px $cyber-blue
 
-            &:before, &:after
-              transform: scaleX(1)
+    &:before, &:after
+      transform: scaleX(1)
 
-          a.active
-            color: $cyber-yellow
-            text-shadow: 0 0 8px $cyber-blue
-            
-            &:before, &:after
-              transform: scaleX(1)
-              background: $cyber-yellow
-              box-shadow: 0 0 10px $cyber-yellow
+  a.btn-nav.active:not([routerLink=""])
+    color: $cyber-yellow
+    text-shadow: 0 0 8px $cyber-blue
+    
+    &:before, &:after
+      transform: scaleX(1)
+      background: $cyber-yellow
+      box-shadow: 0 0 10px $cyber-yellow
 
 .mobile-box
   display: none
@@ -246,7 +236,7 @@ $cyber-neon-pink: #ff2a6d
           background: rgba($cyber-blue, 0.3)
           transition: transform 0.5s ease
 
-      a:hover
+      a:not([routerLink=""]):hover
         background: $cyber-blue
         box-shadow: 0 0 15px $cyber-blue
         transform: scale(1.05)
