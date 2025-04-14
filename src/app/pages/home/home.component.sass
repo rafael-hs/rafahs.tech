@@ -41,6 +41,66 @@ $cyber-green: #00ff66
     opacity: 0.5
     text-shadow: none
 
+@keyframes tvStatic
+  0%, 100%
+    background-position: 0 0
+  10%
+    background-position: -5% -10%
+  20%
+    background-position: 10% 5%
+  30%
+    background-position: -10% 15%
+  40%
+    background-position: 15% -5%
+  50%
+    background-position: -15% -15%
+  60%
+    background-position: 15% 15%
+  70%
+    background-position: -5% 10%
+  80%
+    background-position: 10% -10%
+  90%
+    background-position: 5% 15%
+
+@keyframes tvScanlines
+  0%
+    background-position: 0 0
+  100%
+    background-position: 0 100%
+
+@keyframes tvGlitch
+  0%, 100%
+    transform: translate(0)
+    filter: hue-rotate(0deg)
+  10%
+    transform: translate(-2px, 1px)
+    filter: hue-rotate(45deg)
+  20%
+    transform: translate(2px, -1px)
+    filter: hue-rotate(-45deg)
+  30%
+    transform: translate(-1px, -2px)
+    filter: hue-rotate(90deg)
+  40%
+    transform: translate(1px, 2px)
+    filter: hue-rotate(-90deg)
+  50%
+    transform: translate(-2px, -1px)
+    filter: hue-rotate(180deg)
+  60%
+    transform: translate(2px, 1px)
+    filter: hue-rotate(-180deg)
+  70%
+    transform: translate(-1px, 2px)
+    filter: hue-rotate(270deg)
+  80%
+    transform: translate(1px, -2px)
+    filter: hue-rotate(-270deg)
+  90%
+    transform: translate(0)
+    filter: hue-rotate(0deg)
+
 .home
   display: flex
   justify-content: center
@@ -76,11 +136,58 @@ $cyber-green: #00ff66
     display: flex
     align-items: center
     justify-content: center
+    position: relative
+    overflow: hidden
+    
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background: linear-gradient(to bottom, transparent 50%, rgba($cyber-blue, 0.1) 51%, transparent 52%)
+      background-size: 100% 4px
+      pointer-events: none
+      z-index: 2
+      animation: tvScanlines 10s linear infinite
+      opacity: 0.7
+      transition: animation-duration 0.3s ease
+    
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>')
+      pointer-events: none
+      opacity: 0.07
+      z-index: 3
+      animation: tvStatic 0.5s steps(2) infinite
+      transition: animation-duration 0.3s ease
+    
+    &:hover
+      &:before
+        animation-duration: 30s
+      
+      &:after
+        animation-duration: 2s
     
     img
       height: 80vh
       object-fit: contain
       max-width: 100%
+      position: relative
+      z-index: 1
+      animation: tvGlitch 10s infinite
+      box-shadow: 0 0 15px rgba($cyber-neon-blue, 0.5), 0 0 30px rgba($cyber-neon-blue, 0.3)
+      filter: contrast(1.1) brightness(1.1)
+      transition: all 0.3s ease
+      
+      &:hover
+        animation-duration: 20s
 
   .apresentation
     margin: auto
