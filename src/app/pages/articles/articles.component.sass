@@ -20,17 +20,15 @@ $white: #fff
   100%
     transform: translateY(100%)
 
-// Estilo para a seção principal que se ajusta ao espaço disponível
+// Estilo para a seção principal que ocupa toda a tela
 .articles-section
   position: relative
-  height: 100%
+  min-height: 100vh
   width: 100%
   overflow: hidden
   animation: fadeInAnimation ease-in 1.5s
   animation-iteration-count: 1
   animation-fill-mode: forwards
-  display: flex
-  flex-direction: column
   
   // Efeito de linhas de grade no fundo (similar à página home)
   &:before

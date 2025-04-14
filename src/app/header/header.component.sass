@@ -8,6 +8,37 @@ $cyber-dark-blue: #1b2735
 $cyber-neon-blue: #00f0ff
 $cyber-neon-pink: #ff2a6d
 
+// Animação para o efeito glitch no logo
+@keyframes logo-glitch
+  0%
+    clip-path: inset(0 0 0 0)
+    transform: translate(0)
+    opacity: 0.8
+  2%
+    clip-path: inset(10% 0 60% 0)
+    transform: translate(-2px, 2px)
+    opacity: 0.9
+  4%
+    clip-path: inset(30% 0 40% 0)
+    transform: translate(2px, -2px)
+    opacity: 0.8
+  6%
+    clip-path: inset(50% 0 10% 0)
+    transform: translate(-2px, 2px)
+    opacity: 1
+  8%
+    clip-path: inset(20% 0 70% 0)
+    transform: translate(2px, -2px)
+    opacity: 0.9
+  10%
+    clip-path: inset(0 0 0 0)
+    transform: translate(0)
+    opacity: 0.8
+  100%
+    clip-path: inset(0 0 0 0)
+    transform: translate(0)
+    opacity: 0.8
+
 .header
   display: flex
   align-items: center
@@ -50,12 +81,33 @@ $cyber-neon-pink: #ff2a6d
         opacity: 1
         animation: logo-glitch 1s infinite
       
+      &:after
+        content: 'HOME'
+        position: absolute
+        bottom: -15px
+        left: 50%
+        transform: translateX(-50%)
+        font-size: 10px
+        color: $cyber-neon-blue
+        text-shadow: 0 0 5px $cyber-neon-blue
+        letter-spacing: 2px
+        opacity: 0
+        transition: opacity 0.3s ease
+      
+      &:hover:after
+        opacity: 1
+      
       img
         display: inline-block
         width: 100%
         max-width: 70px
         margin-right: 20px
-        filter: drop-shadow(0 0 5px $cyber-blue)
+        filter: drop-shadow(0 0 8px $cyber-neon-blue)
+        transition: all 0.3s ease
+        
+        &:hover
+          filter: drop-shadow(0 0 12px $cyber-neon-pink)
+          transform: scale(1.05)
 
   .nav-bar
     nav
