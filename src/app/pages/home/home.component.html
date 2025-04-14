@@ -22,15 +22,17 @@
         I'm a software engineer specializing in building and designing exceptional distributed systems.  Currently, I'm focused on backend, in special to elixir and functional languages.
       </p>
       <div class="button-box">
-        <div class="resume" id="resumeButton" (click)="toggleNavButton()">
-            Resume
+        <div class="resume-container" style="position: relative;">
+          <div class="resume" id="resumeButton" (click)="toggleNavButton()">
+              Resume
+          </div>
+          <div class="resume-button hidden" id="resumes">
+              <ul>
+                  <li><a style="color: black;" title="English Resume" href="/assets/resume_english.pdf" download="resume_english.pdf">English</a></li>
+                  <li><a style="color: black;" title="Portuguese Resume" href="/assets/resume_portuguese.pdf" download="resume_portuguese.pdf">Portuguese</a></li>
+              </ul>
+          </div>
         </div>
-        <div class="resume-button hidden" id="resumes">
-            <ul>
-                <li><a title="English Resume" href="/assets/resume_english.pdf" download="resume_english.pdf">English</a></li>
-                <li><a title="Portuguese Resume" href="/assets/resume_portuguese.pdf" download="resume_portuguese.pdf">Portuguese</a></li>
-            </ul>
-        </div>
-    </div>
+      </div>
   </div>
 </section>

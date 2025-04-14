@@ -1,8 +1,11 @@
-<div class="articles-box" *ngIf="articles; else loadingBox">
+<div class="articles-box" *ngIf="!isLoading && articles.length > 0; else loadingBox">
+    <!-- Efeito de scanline como na pu00e1gina home -->
+    <div class="scanline"></div>
+    
     <div *ngFor="let article of articles" class="articles-for">
       <a href="{{article.link}}" target="_blank">
-        <div>
-          <img src="{{article.thumbnail}}" alt="">
+        <div class="article-image">
+          <img [src]="article.thumbnail" [alt]="article.title" onerror="this.src='https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png'; this.onerror=null;">
         </div>
         <div>
           <p class="title">{{article.title}}</p>
@@ -10,6 +13,11 @@
         </div>
       </a>
     </div>
+</div>
+
+<div *ngIf="!isLoading && articles.length === 0" class="no-articles">
+  <h2>Nenhum artigo encontrado</h2>
+  <p>Não foi possível carregar os artigos do Medium. Tente novamente mais tarde.</p>
 </div>
 
 <ng-template #loadingBox>

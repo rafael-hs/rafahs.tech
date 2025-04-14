@@ -238,14 +238,37 @@ $cyber-green: #00ff66
 
     p
       margin: 30px 0px 0px 0px
-      padding: 0px 0px
+      padding: 15px 20px
       max-width: 540px
-      color: rgba(white, 0.8)
-      font-size: 1.1em
+      color: rgba(white, 0.9)
+      font-size: 16px
       line-height: 1.6
       position: relative
       text-shadow: 0 0 2px rgba($cyber-blue, 0.3)
       z-index: 1
+      border-left: 3px solid $cyber-blue
+      box-shadow: 0 0 15px rgba($cyber-blue, 0.2)
+      background-color: rgba($cyber-dark-blue, 0.7)
+      transition: all 0.3s ease
+      overflow: hidden
+      
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: -100%
+        width: 100%
+        height: 100%
+        background: linear-gradient(90deg, transparent, rgba($cyber-blue, 0.1), transparent)
+        transition: 0.5s
+        z-index: -1
+      
+      &:hover
+        border-left: 3px solid $cyber-yellow
+        box-shadow: 0 0 20px rgba($cyber-yellow, 0.3)
+        
+        &:before
+          left: 100%
 
     .button-box
       display: flex
@@ -303,11 +326,12 @@ $cyber-green: #00ff66
         &.show
           display: block
           position: absolute
-          background: rgba($cyber-black, 0.9)
+          background: rgba($cyber-dark-blue, 0.7)
           border: 1px solid $cyber-blue
           box-shadow: 0 0 10px rgba($cyber-blue, 0.5)
           padding: 10px
-          margin-top: 80px
+          left: 100%
+          top: 0
           
           ul
             list-style: none
@@ -328,7 +352,7 @@ $cyber-green: #00ff66
         max-height: 400px
         opacity: 0
         transition: opacity 0.5s ease-out, transform 0.5s ease-out
-        transform: translateY(-10px)
+        transform: translateX(-10px)
 
         ul
           display: flex
@@ -367,6 +391,7 @@ $cyber-green: #00ff66
 
             a:hover
               background: $cyber-blue
+              color: $cyber-black
               box-shadow: 0 0 15px rgba($cyber-blue, 0.7)
               transform: translateY(-3px)
               
@@ -376,12 +401,12 @@ $cyber-green: #00ff66
       .hidden
         opacity: 0
         pointer-events: none
-        transform: translateY(-10px)
+        transform: translateX(-10px)
 
       .show
         opacity: 1
         display: block
-        transform: translateY(0)
+        transform: translateX(0)
 
   @media(max-width: 410px)
     .apresentation
