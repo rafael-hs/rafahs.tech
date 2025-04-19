@@ -110,7 +110,7 @@ $cyber-green: #00ff66
   animation-fill-mode: forwards
   position: relative
   overflow: hidden
-  
+
   // Efeito de linhas de grade no fundo
   &:before
     content: ''
@@ -138,7 +138,7 @@ $cyber-green: #00ff66
     justify-content: center
     position: relative
     overflow: hidden
-    
+
     &:before
       content: ''
       position: absolute
@@ -153,7 +153,7 @@ $cyber-green: #00ff66
       animation: tvScanlines 10s linear infinite
       opacity: 0.7
       transition: animation-duration 0.3s ease
-    
+
     &:after
       content: ''
       position: absolute
@@ -167,14 +167,14 @@ $cyber-green: #00ff66
       z-index: 3
       animation: tvStatic 0.5s steps(2) infinite
       transition: animation-duration 0.3s ease
-    
+
     &:hover
       &:before
         animation-duration: 30s
-      
+
       &:after
         animation-duration: 2s
-    
+
     img
       height: 80vh
       object-fit: contain
@@ -185,7 +185,7 @@ $cyber-green: #00ff66
       box-shadow: 0 0 15px rgba($cyber-neon-blue, 0.5), 0 0 30px rgba($cyber-neon-blue, 0.3)
       filter: contrast(1.1) brightness(1.1)
       transition: all 0.3s ease
-      
+
       &:hover
         animation-duration: 20s
 
@@ -212,7 +212,7 @@ $cyber-green: #00ff66
       position: relative
       display: inline-block
       animation: neonFlicker 10s infinite
-      
+
       &:before
         content: ''
         position: absolute
@@ -222,7 +222,7 @@ $cyber-green: #00ff66
         height: 2px
         background: $cyber-yellow
         box-shadow: 0 0 5px $cyber-yellow
-    
+
     h2
       margin: 0px 0px 0px 0px
       font-weight: 600
@@ -232,7 +232,7 @@ $cyber-green: #00ff66
       text-shadow: 0 0 10px rgba($cyber-blue, 0.7)
       position: relative
       display: inline-block
-      
+
       &:after
         content: attr(data-text)
         position: absolute
@@ -244,7 +244,7 @@ $cyber-green: #00ff66
         opacity: 0.7
         z-index: 0
         animation: glitch 5s infinite
-    
+
     h3
       line-height: 1
       margin: 10px 0px 0px 0px
@@ -271,7 +271,7 @@ $cyber-green: #00ff66
       background-color: rgba($cyber-dark-blue, 0.7)
       transition: all 0.3s ease
       overflow: hidden
-      
+
       &:before
         content: ''
         position: absolute
@@ -282,11 +282,11 @@ $cyber-green: #00ff66
         background: linear-gradient(90deg, transparent, rgba($cyber-blue, 0.1), transparent)
         transition: 0.5s
         z-index: -1
-      
+
       &:hover
         border-left: 3px solid $cyber-yellow
         box-shadow: 0 0 20px rgba($cyber-yellow, 0.3)
-        
+
         &:before
           left: 100%
 
@@ -295,7 +295,7 @@ $cyber-green: #00ff66
       flex-direction: row
       width: 100%
       margin-top: 20px
-      
+
       .resume
         cursor: pointer
         margin: 30px 10px 30px 0px
@@ -313,7 +313,7 @@ $cyber-green: #00ff66
         position: relative
         overflow: hidden
         border: none
-        
+
         &:before
           content: ''
           position: absolute
@@ -324,12 +324,12 @@ $cyber-green: #00ff66
           border: 1px solid $cyber-yellow
           opacity: 0
           transition: opacity 0.3s ease
-        
+
         &:hover
           background-color: $cyber-blue
           box-shadow: 0 0 20px rgba($cyber-blue, 0.7)
           transform: translateY(-3px)
-          
+
           &:before
             opacity: 1
 
@@ -369,23 +369,23 @@ $cyber-green: #00ff66
         top: 50%
         transform: translateY(-50%)
         margin-left: 10px
-        
+
         ul
           list-style: none
           padding: 0
           margin: 0
           min-width: 120px
           text-align: center
-          
+
           li
             margin: 5px 0
-            
+
             a
               color: $cyber-yellow
               text-decoration: none
               transition: all 0.3s ease
               text-shadow: 0 0 3px rgba($cyber-yellow, 0.5)
-              
+
               &:hover
                 color: white
                 text-shadow: 0 0 5px $cyber-yellow
