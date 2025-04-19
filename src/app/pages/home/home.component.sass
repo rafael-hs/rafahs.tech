@@ -335,48 +335,59 @@ $cyber-green: #00ff66
 
       .resume-button
         cursor: pointer
-        display: block
+        position: absolute
         letter-spacing: 0.065em
         font-size: 0.75em
         overflow: hidden
         max-height: 400px
         opacity: 0
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out
-        transform: translateX(-10px)
+        transition: all 0.5s ease-out
+        left: 100%
+        top: 50%
+        transform: translateY(-50%)
+        margin-left: 10px
+        z-index: 10
 
       .hidden
         opacity: 0
         pointer-events: none
-        transform: translateX(-10px)
-        display: none
+        transform: translateY(-50%) translateX(-10px)
+        position: absolute
+        visibility: hidden
 
       .show
         opacity: 1
-        display: block
-        transform: translateX(0)
+        visibility: visible
+        pointer-events: auto
+        transform: translateY(0)
         position: absolute
-        background: rgba($cyber-dark-blue, 0.7)
-        border: 1px solid $cyber-blue
-        box-shadow: 0 0 10px rgba($cyber-blue, 0.5)
+        background: rgba($cyber-dark-blue, 0.8)
+        border: 1px solid $cyber-yellow
+        box-shadow: 0 0 10px rgba($cyber-yellow, 0.5)
         padding: 10px
         left: 100%
-        top: 0
+        top: 50%
+        transform: translateY(-50%)
+        margin-left: 10px
         
         ul
           list-style: none
           padding: 0
           margin: 0
+          min-width: 120px
+          text-align: center
           
           li
             margin: 5px 0
             
             a
-              color: $cyber-blue
+              color: $cyber-yellow
               text-decoration: none
               transition: all 0.3s ease
+              text-shadow: 0 0 3px rgba($cyber-yellow, 0.5)
               
               &:hover
-                color: $cyber-yellow
+                color: white
                 text-shadow: 0 0 5px $cyber-yellow
 
   @media(max-width: 410px)
