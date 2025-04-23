@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'home',
@@ -6,13 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.sass']
 })
 
-export class HomeComponent implements OnInit {
-
+export class HomeComponent {
   constructor() { }
-
-  ngOnInit(): void {
-
-  }
 
   toggleNavButton() {
     let button = document.getElementById("resumeButton")

@@ -1,30 +1,70 @@
 <section class="home">
-  <div class="apresentation">
-      <h1>
-        Hi, my name is
-      </h1>
-      <h2>
-        Rafael Honório.
-      </h2>
-      <h3>
-        I build things for the world.
-      </h3>
+  <div
+    class="content-wrapper"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    "
+  >
+    <div class="apresentation">
+      <h1>Hi, my name is</h1>
+      <h2 data-text="Rafael Honório.">Rafael Honório.</h2>
+      <div style="width: 100%"></div>
+      <h3>I build systems that scale.</h3>
       <p>
-        I’m a software engineer specializing in building and designing exceptional distributed systems.  Currently, I’m focused on backend, in special to elixir and functional languages.
+        I'm a senior software engineer with 8+ years of experience in software
+        development, from backend systems to cloud infrastructure. I'm
+        passionate about building scalable and resilient solutions using Elixir,
+        distributed architectures, and clean code principles.
       </p>
-      <!-- <a title="Resume" href="/assets/resume.pdf" download="resume.pdf">
-        My Resume
-      </a> -->
+      <p>
+        I’ve worked on complex systems in the finance and payments industry,
+        including card issuance platforms, QR Code payments, and digital
+        banking. I also have solid experience with cloud (AWS, GCP, Azure
+        DevOps), DevOps tools (Terraform, Helm, Docker, Kubernetes), and
+        frontend frameworks (Angular, Vue.js, Ionic).
+      </p>
+      <p>
+        Currently, I’m focused on backend development with Elixir and
+        contributing to products that have real-world impact.
+      </p>
       <div class="button-box">
-        <div class="resume" id="resumeButton" (click)="toggleNavButton()">
+        <div class="resume-container" style="position: relative">
+          <div class="resume" id="resumeButton" (click)="toggleNavButton()">
             Resume
-        </div>
-        <div class="resume-button hidden" id="resumes">
+          </div>
+          <div class="resume-button hidden" id="resumes">
             <ul>
-                <li><a title="English Resume" href="/assets/resume_english.pdf" download="resume_english.pdf">English</a></li>
-                <li><a title="Portuguese Resume" href="/assets/resume_portuguese.pdf" download="resume_portuguese.pdf">Portuguese</a></li>
+              <li>
+                <a
+                  title="English Resume"
+                  href="/assets/resumes/resume_eng.pdf"
+                  download="resume_english.pdf"
+                  >English</a
+                >
+              </li>
+              <li>
+                <a
+                  title="Portuguese Resume"
+                  href="/assets/resumes/resume_por.pdf"
+                  download="resume_portuguese.pdf"
+                  >Portuguese</a
+                >
+              </li>
             </ul>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="profile-image">
+      <img
+        src="/assets/images/rhs_tech2.png"
+        alt="Cyberpunk Profile"
+        style="height: 80vh; object-fit: contain; max-width: 100%"
+      />
     </div>
   </div>
 </section>

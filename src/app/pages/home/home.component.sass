@@ -1,14 +1,193 @@
-$white: #fff
-$light-grey: #bebebe
-$black: #000
+// Importando variáveis do estilo cyberpunk
+$cyber-yellow: #fcee0a
+$cyber-blue: #00ffff
+$cyber-pink: #ff00ff
+$cyber-red: #ff003c
+$cyber-black: #0d0d0d
+$cyber-dark-blue: #1b2735
+$cyber-neon-blue: #00f0ff
+$cyber-neon-pink: #ff2a6d
+$cyber-purple: #9900ff
+$cyber-green: #00ff66
+
+// Definindo as animações
+@keyframes fadeInAnimation
+  0%
+    opacity: 0
+    transform: translateY(20px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes glitch
+  0%
+    text-shadow: 0.05em 0 0 $cyber-pink, -0.05em -0.025em 0 $cyber-blue
+    transform: translate(0.025em, 0.025em)
+  15%
+    text-shadow: -0.05em -0.025em 0 $cyber-pink, 0.025em 0.025em 0 $cyber-blue
+    transform: translate(-0.025em, -0.025em)
+  50%
+    text-shadow: 0.025em 0.05em 0 $cyber-pink, 0.05em 0 0 $cyber-blue
+    transform: translate(0, 0)
+  100%
+    text-shadow: -0.025em 0 0 $cyber-pink, -0.025em -0.025em 0 $cyber-blue
+    transform: translate(0.025em, 0.025em)
+
+@keyframes neonFlicker
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%
+    opacity: 1
+    text-shadow: 0 0 10px $cyber-blue, 0 0 20px $cyber-blue, 0 0 30px $cyber-blue
+  20%, 24%, 55%
+    opacity: 0.5
+    text-shadow: none
+
+@keyframes tvStatic
+  0%, 100%
+    background-position: 0 0
+  10%
+    background-position: -5% -10%
+  20%
+    background-position: 10% 5%
+  30%
+    background-position: -10% 15%
+  40%
+    background-position: 15% -5%
+  50%
+    background-position: -15% -15%
+  60%
+    background-position: 15% 15%
+  70%
+    background-position: -5% 10%
+  80%
+    background-position: 10% -10%
+  90%
+    background-position: 5% 15%
+
+@keyframes tvScanlines
+  0%
+    background-position: 0 0
+  100%
+    background-position: 0 100%
+
+@keyframes tvGlitch
+  0%, 100%
+    transform: translate(0)
+    filter: hue-rotate(0deg)
+  10%
+    transform: translate(-2px, 1px)
+    filter: hue-rotate(45deg)
+  20%
+    transform: translate(2px, -1px)
+    filter: hue-rotate(-45deg)
+  30%
+    transform: translate(-1px, -2px)
+    filter: hue-rotate(90deg)
+  40%
+    transform: translate(1px, 2px)
+    filter: hue-rotate(-90deg)
+  50%
+    transform: translate(-2px, -1px)
+    filter: hue-rotate(180deg)
+  60%
+    transform: translate(2px, 1px)
+    filter: hue-rotate(-180deg)
+  70%
+    transform: translate(-1px, 2px)
+    filter: hue-rotate(270deg)
+  80%
+    transform: translate(1px, -2px)
+    filter: hue-rotate(-270deg)
+  90%
+    transform: translate(0)
+    filter: hue-rotate(0deg)
 
 .home
   display: flex
   justify-content: center
   height: 100%
-  animation: fadeInAnimation ease-in 2s
+  animation: fadeInAnimation ease-in 1.5s
   animation-iteration-count: 1
   animation-fill-mode: forwards
+  position: relative
+  overflow: hidden
+
+  // Efeito de linhas de grade no fundo
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: linear-gradient(rgba($cyber-blue, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba($cyber-blue, 0.1) 1px, transparent 1px)
+    background-size: 30px 30px
+    z-index: -1
+    opacity: 0.3
+
+  .content-wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    height: 100%
+
+  .profile-image
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    overflow: hidden
+
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background: linear-gradient(to bottom, transparent 50%, rgba($cyber-blue, 0.1) 51%, transparent 52%)
+      background-size: 100% 4px
+      pointer-events: none
+      z-index: 2
+      animation: tvScanlines 10s linear infinite
+      opacity: 0.7
+      transition: animation-duration 0.3s ease
+
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>')
+      pointer-events: none
+      opacity: 0.07
+      z-index: 3
+      animation: tvStatic 0.5s steps(2) infinite
+      transition: animation-duration 0.3s ease
+
+    &:hover
+      &:before
+        animation-duration: 30s
+
+      &:after
+        animation-duration: 2s
+
+    img
+      height: 80vh
+      object-fit: contain
+      max-width: 100%
+      position: relative
+      z-index: 1
+      animation: tvGlitch 10s infinite
+      box-shadow: 0 0 15px rgba($cyber-neon-blue, 0.5), 0 0 30px rgba($cyber-neon-blue, 0.3)
+      filter: contrast(1.1) brightness(1.1)
+      transition: all 0.3s ease
+
+      &:hover
+        animation-duration: 20s
 
   .apresentation
     margin: auto
@@ -20,102 +199,198 @@ $black: #000
     height: 100%
     max-width: 1300px
     margin: 0px 25px
-    transition: opacity 2s ease-in
+    transition: opacity 1s ease-in
+    position: relative
+    z-index: 1
 
     h1
       margin: 0px 0px 15px 4px
       font-size: clamp(14px, 5vw, 18px)
       font-weight: 500
-      color: #845ec2
+      color: $cyber-yellow
+      text-shadow: 0 0 5px $cyber-yellow
+      position: relative
+      display: inline-block
+      animation: neonFlicker 10s infinite
+
+      &:before
+        content: ''
+        position: absolute
+        top: 50%
+        left: -20px
+        width: 15px
+        height: 2px
+        background: $cyber-yellow
+        box-shadow: 0 0 5px $cyber-yellow
+
     h2
       margin: 0px 0px 0px 0px
       font-weight: 600
       font-size: clamp(20px, 8vw, 70px)
       line-height: 1.1
-      color: $white
+      color: $cyber-blue
+      text-shadow: 0 0 10px rgba($cyber-blue, 0.7)
+      position: relative
+      display: inline-block
+
+      &:after
+        content: attr(data-text)
+        position: absolute
+        left: 2px
+        top: 2px
+        width: 100%
+        height: 100%
+        color: $cyber-pink
+        opacity: 0.7
+        z-index: 0
+        animation: glitch 5s infinite
+
     h3
       line-height: 1
       margin: 10px 0px 0px 0px
       font-size: clamp(20px, 8vw, 66px)
-      color: $light-grey
+      color: rgba(white, 0.9)
+      position: relative
+      text-shadow: 0 0 5px rgba(white, 0.5)
+      z-index: 1
+      clear: both
+      display: block
 
     p
-      margin: 20px 0px 0px 0px
-      padding: 0px 0px
+      margin: 30px 0px 0px 0px
+      padding: 15px 20px
       max-width: 540px
-      color: $light-grey
+      color: rgba(white, 0.9)
+      font-size: 16px
+      line-height: 1.6
+      position: relative
+      text-shadow: 0 0 2px rgba($cyber-blue, 0.3)
+      z-index: 1
+      border-left: 3px solid $cyber-blue
+      box-shadow: 0 0 15px rgba($cyber-blue, 0.2)
+      background-color: rgba($cyber-dark-blue, 0.7)
+      transition: all 0.3s ease
+      overflow: hidden
+
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: -100%
+        width: 100%
+        height: 100%
+        background: linear-gradient(90deg, transparent, rgba($cyber-blue, 0.1), transparent)
+        transition: 0.5s
+        z-index: -1
+
+      &:hover
+        border-left: 3px solid $cyber-yellow
+        box-shadow: 0 0 20px rgba($cyber-yellow, 0.3)
+
+        &:before
+          left: 100%
 
     .button-box
       display: flex
       flex-direction: row
       width: 100%
+      margin-top: 20px
+
       .resume
         cursor: pointer
         margin: 30px 10px 30px 0px
-        width: 10rem
-        padding: 18px 54px
+        width: auto
+        padding: 15px 40px
         text-decoration: none
         text-align: center
-        color: $white
-        font-weight: 500
-        border-radius: 40px
-        background-color: #845ec2
-        box-shadow: 3px 3px 5px 0px #353535
-        transition: all 1s
+        color: $cyber-black
+        font-weight: 600
+        letter-spacing: 1px
+        text-transform: uppercase
+        background-color: $cyber-yellow
+        box-shadow: 0 0 15px rgba($cyber-yellow, 0.5)
+        transition: all 0.3s ease
+        position: relative
+        overflow: hidden
+        border: none
 
-        a:hover
-          box-shadow: none
+        &:before
+          content: ''
+          position: absolute
+          top: -5px
+          left: -5px
+          right: -5px
+          bottom: -5px
+          border: 1px solid $cyber-yellow
+          opacity: 0
+          transition: opacity 0.3s ease
+
+        &:hover
+          background-color: $cyber-blue
+          box-shadow: 0 0 20px rgba($cyber-blue, 0.7)
+          transform: translateY(-3px)
+
+          &:before
+            opacity: 1
 
       .resume-button
         cursor: pointer
-        display: block
+        position: absolute
         letter-spacing: 0.065em
         font-size: 0.75em
         overflow: hidden
         max-height: 400px
         opacity: 0
-        transition: opacity 1s ease-out
-
-        ul
-          display: flex
-          flex-direction: column
-          text-align: right
-          margin-top: 0px
-          margin-right: 20px
-          padding-bottom: 20px
-
-          li
-            a
-              color: $white
-              display: block
-              border-radius: 25px
-              margin: 10px 0px 0px 0px
-              padding: 12px
-              text-align: center
-              line-height: 100%
-              background: #845ec2
-              box-shadow: 3px 3px 5px 0px #353535
-              transition: all 1s
-
-            a:hover
-              box-shadow: none
+        transition: all 0.5s ease-out
+        left: 100%
+        top: 50%
+        transform: translateY(-50%)
+        margin-left: 10px
+        z-index: 10
 
       .hidden
         opacity: 0
         pointer-events: none
+        transform: translateY(-50%) translateX(-10px)
+        position: absolute
+        visibility: hidden
 
       .show
         opacity: 1
-        display: block
+        visibility: visible
+        pointer-events: auto
+        transform: translateY(0)
+        position: absolute
+        background: rgba($cyber-dark-blue, 0.8)
+        border: 1px solid $cyber-yellow
+        box-shadow: 0 0 10px rgba($cyber-yellow, 0.5)
+        padding: 10px
+        left: 100%
+        top: 50%
+        transform: translateY(-50%)
+        margin-left: 10px
+
+        ul
+          list-style: none
+          padding: 0
+          margin: 0
+          min-width: 120px
+          text-align: center
+
+          li
+            margin: 5px 0
+
+            a
+              color: $cyber-yellow
+              text-decoration: none
+              transition: all 0.3s ease
+              text-shadow: 0 0 3px rgba($cyber-yellow, 0.5)
+
+              &:hover
+                color: white
+                text-shadow: 0 0 5px $cyber-yellow
 
   @media(max-width: 410px)
     .apresentation
-      margin: 0px 0px
+      margin: 0px 15px
       max-width: 300px
-
-@keyframes fadeInAnimation
-  0%
-    opacity: 0
-
-  100%
-    opacity: 1
