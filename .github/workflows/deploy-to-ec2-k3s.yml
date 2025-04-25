@@ -9,42 +9,42 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # 1) Copia seus manifests (Deployment, Service, Ingress, etc) para a EC2
-      - name: Sync manifests to server
-        uses: appleboy/scp-action@v0.1.5
+      # 1) Log in no Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          source: "manifests/"
-          target: "/home/ubuntu/manifests"
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 2) Conecta por SSH e executa o bootstrap / deploy
-      - name: Bootstrap & Deploy on EC2
-        uses: appleboy/ssh-action@v0.1.7
+      # 2) Build & push da imagem
+      - name: Build and push Docker image
+        run: |
+          docker build -t rafaelhs/rafahs-tech:latest .
+          docker push rafaelhs/rafahs-tech:latest
+
+      # 3) Inicia o ssh-agent
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          script: |
-            set -e
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-            # 1. (Re)instala o K3s se não existir
-            if ! command -v k3s >/dev/null; then
-              curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
-            fi
+    # passo A: só faz o pull da imagem
+      - name: Pull image on EC2
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
+            "sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest"
 
-            # 2. Puxa a imagem correta da sua registry
-            sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest
-
-            # 3. Reaplica todos os manifests
-            sudo k3s kubectl apply -f /home/ubuntu/manifests
-
-            # 4. (Opcional) Força rollout se quiser garantir atualização
-            sudo k3s kubectl -n rafahs-tech rollout restart deployment/rafahs-tech
+    # passo B: aplica manifests (rápido)
+      - name: Apply manifests on EC2
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
+            "sudo k3s kubectl apply -R -f ~/apps/rafahs.tech/manifests \
+               --validate=false \
+              --request-timeout=60s && \
+            sudo k3s kubectl -n rafahs-tech rollout restart deployment/rafahs-tech"
