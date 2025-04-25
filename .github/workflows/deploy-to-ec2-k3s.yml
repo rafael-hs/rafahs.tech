@@ -1,0 +1,50 @@
+# .github/workflows/deploy-to-ec2-k3s.yml
+name: Deploy to EC2 + K3s
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 1) Copia seus manifests (Deployment, Service, Ingress, etc) para a EC2
+      - name: Sync manifests to server
+        uses: appleboy/scp-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          source: "manifests/"
+          target: "/home/ubuntu/manifests"
+
+      # 2) Conecta por SSH e executa o bootstrap / deploy
+      - name: Bootstrap & Deploy on EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            # 1. (Re)instala o K3s se não existir
+            if ! command -v k3s >/dev/null; then
+              curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--docker" sh -
+            fi
+
+            # 2. Puxa a imagem correta da sua registry
+            sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest
+
+            # 3. Reaplica todos os manifests
+            sudo k3s kubectl apply -f /home/ubuntu/manifests
+
+            # 4. (Opcional) Força rollout se quiser garantir atualização
+            sudo k3s kubectl -n rafahs-tech rollout restart deployment/rafahs-tech

@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+README.md
+
+# não ignore o Dockerfile nem o nginx.conf:
+!Dockerfile
+!nginx.conf
