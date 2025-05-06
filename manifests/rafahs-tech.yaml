@@ -43,7 +43,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: ec2-44-202-101-227.compute-1.amazonaws.com
+  - host: rafaelhs-tech.com
     http:
       paths:
       - path: /

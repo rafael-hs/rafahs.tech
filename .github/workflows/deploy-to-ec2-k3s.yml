@@ -44,7 +44,7 @@ jobs:
       - name: Apply manifests on EC2
         run: |
           ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
-            "sudo k3s kubectl apply -R -f ~/apps/rafahs.tech/manifests \
+            "sudo k3s kubectl apply -R -f ~/apps/rafahs-tech \
                --validate=false \
               --request-timeout=60s && \
             sudo k3s kubectl -n rafahs-tech rollout restart deployment/rafahs-tech"
