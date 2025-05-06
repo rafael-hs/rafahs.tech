@@ -17,24 +17,29 @@ jobs:
       - name: Docker login
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker build e push
+      - name: Build and push Docker image
         run: |
-          docker build -t rafaelhs/rafahs-tech:latest .
-          docker push rafaelhs/rafahs-tech:latest
+          docker buildx create --use
+          docker buildx build \
+          --platform linux/amd64 \
+          --tag rafaelhs/rafaelhs-tech:latest \
+          --push .
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
       - name: Pull da imagem no servidor
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.EC2_HOST }} "sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest"
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
+          "sudo k3s ctr images pull docker.io/rafaelhs/rafaelhs-tech:latest"
 
       - name: Deploy no K3s
         run: |
-          scp -o StrictHostKeyChecking=no app-deploy.yaml ubuntu@{{ secrets.EC2_HOST }}:~/app-deploy.yaml
-          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.EC2_HOST }} "sudo k3s kubectl apply -f ~/app-deploy.yaml && sudo k3s kubectl rollout restart deployment rafahs-tech"
+          scp -o BatchMode=yes -o StrictHostKeyChecking=no manifests/rafaelhs-tech-deploy.yaml ubuntu@${{ secrets.EC2_HOST }}:~/rafaelhs-tech-deploy.yaml
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
+          "sudo k3s kubectl apply -f ~/rafaelhs-tech-deploy.yaml && sudo k3s kubectl rollout restart deployment rafahs-tech -n rafaelhs-tech"

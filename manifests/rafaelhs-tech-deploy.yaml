@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: rafahs-tech
-        image: rafaelhs/meu-site-angular:latest
+        image: rafaelhs/rafaelhs-tech:latest
         ports:
         - containerPort: 80
 
