@@ -12,39 +12,29 @@ jobs:
     environment: production
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      # 1) Log in no Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
+      - name: Docker login
+        uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USER }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 2) Build & push da imagem
-      - name: Build and push Docker image
+      - name: Docker build e push
         run: |
           docker build -t rafaelhs/rafahs-tech:latest .
           docker push rafaelhs/rafahs-tech:latest
 
-      # 3) Inicia o ssh-agent
-      - name: Start SSH agent
+      - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    # passo A: só faz o pull da imagem
-      - name: Pull image on EC2
+      - name: Pull da imagem no servidor
         run: |
-          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
-            "sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest"
+          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.EC2_HOST }} "sudo k3s ctr images pull docker.io/rafaelhs/rafahs-tech:latest"
 
-    # passo B: aplica manifests (rápido)
-      - name: Apply manifests on EC2
+      - name: Deploy no K3s
         run: |
-          ssh -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} \
-            "sudo k3s kubectl apply -R -f ~/apps/rafahs-tech \
-               --validate=false \
-              --request-timeout=60s && \
-            sudo k3s kubectl -n rafahs-tech rollout restart deployment/rafahs-tech"
+          scp -o StrictHostKeyChecking=no app-deploy.yaml ubuntu@{{ secrets.EC2_HOST }}:~/app-deploy.yaml
+          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.EC2_HOST }} "sudo k3s kubectl apply -f ~/app-deploy.yaml && sudo k3s kubectl rollout restart deployment rafahs-tech"
