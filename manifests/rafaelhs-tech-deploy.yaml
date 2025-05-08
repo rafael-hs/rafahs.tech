@@ -3,6 +3,13 @@ kind: Deployment
 metadata:
   name: rafahs-tech
   namespace: rafaelhs-tech
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "200m"
 spec:
   replicas: 1
   selector:
