@@ -1,0 +1,42 @@
+# .github/workflows/deploy.yml
+name: Build & Deploy to EC2 with Caddy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build e Push Docker image
+        run: |
+          docker buildx create --use
+          docker buildx build \
+          --platform linux/amd64 \
+          --tag rafaelhs/rafaelhs-tech:latest \
+          --push .
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/rafahs.tech
+            docker-compose pull
+            docker-compose down --remove-orphans
+            docker-compose up -d
