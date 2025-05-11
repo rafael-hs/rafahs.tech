@@ -37,5 +37,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/rafahs.tech
+            git fetch origin
+            git reset --hard origin/master
             docker-compose pull
             docker-compose up -d --force-recreate --remove-orphans

@@ -20,7 +20,7 @@ RUN npm run build -- --configuration production
 FROM caddy:2-alpine
 
 # Copia o conteúdo do build para /srv
-COPY --from=builder /app/dist/rafahs-tech /srv
+COPY --from=builder /app/dist/rafahs-tech/. /srv
 
 # Configuração do Caddy
 COPY Caddyfile /etc/caddy/Caddyfile
