@@ -1,15 +1,8 @@
 version: "3.8"
 services:
-  app:
-    build: .
+  web:
+    image: rafaelhs/rafaelhs-tech:latest
     restart: always
-    expose:
-      - "8080"
-  caddy:
-    image: caddy:2-alpine
-    restart: always
-    depends_on:
-      - app
     ports:
       - "80:80"
       - "443:443"
