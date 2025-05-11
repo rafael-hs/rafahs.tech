@@ -36,8 +36,17 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            set -e  # Faz o script falhar se qualquer comando der erro
             cd ~/rafahs.tech
+            echo "[+] Resetando o repositório"
             git fetch origin
             git reset --hard origin/master
+
+            echo "[+] Parando containers antigos"
+            docker-compose down --remove-orphans
+
+            echo "[+] Atualizando imagem"
             docker-compose pull
-            docker-compose up -d --force-recreate --remove-orphans
+
+            echo "[+] Subindo nova versão"
+            docker-compose up -d
